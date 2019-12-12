@@ -38,4 +38,7 @@
     <f:combobox style="width:15em" default="${descriptor.defaultRolloutPercent}" />
   </f:entry>
 
+  <f:entry title="${%Path track name validation (for custom tracks)}" field="passTrackValidation">
+    <f:checkbox/>
+  </f:entry>
 </j:jelly>

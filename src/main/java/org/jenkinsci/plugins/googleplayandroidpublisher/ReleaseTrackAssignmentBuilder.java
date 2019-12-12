@@ -40,6 +40,7 @@ public class ReleaseTrackAssignmentBuilder extends GooglePlayBuilder {
     @VisibleForTesting String versionCodes;
     private String filesPattern;
     @VisibleForTesting String trackName;
+    @VisibleForTesting Boolean passTrackValidation;
     @VisibleForTesting Double rolloutPercent;
 
     @Deprecated private transient String apkFilesPattern;
@@ -94,6 +95,19 @@ public class ReleaseTrackAssignmentBuilder extends GooglePlayBuilder {
 
     public String getVersionCodes() {
         return versionCodes;
+    }
+
+    @DataBoundSetter
+    public void setPassTrackValidation(Boolean value) {
+        if (value == null) {
+            this.passTrackValidation = false;
+        } else {
+            this.passTrackValidation = value;
+        }
+    }
+
+    public boolean getPassTrackValidation() {
+        return passTrackValidation;
     }
 
     // Required for Pipeline builds still using `apkFilesPattern`
@@ -202,7 +216,7 @@ public class ReleaseTrackAssignmentBuilder extends GooglePlayBuilder {
         final ReleaseTrack track = fromConfigValue(trackName);
         if (trackName == null) {
             errors.add("Release track was not specified");
-        } else if (track == null) {
+        } else if (!this.passTrackValidation && track == null) {
             errors.add(String.format("'%s' is not a valid release track", trackName));
         } else {
             // Check for valid rollout percentage

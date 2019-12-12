@@ -57,6 +57,7 @@ public class ApkPublisher extends GooglePlayPublisher {
     private String expansionFilesPattern;
     private boolean usePreviousExpansionFilesIfMissing;
     @VisibleForTesting String trackName;
+    private boolean passTrackValidation;
     private Double rolloutPercent;
     private RecentChanges[] recentChangeList;
 
@@ -150,6 +151,19 @@ public class ApkPublisher extends GooglePlayPublisher {
     }
 
     @DataBoundSetter
+    public void setPassTrackValidation(Boolean value) {
+        if (value == null) {
+            this.passTrackValidation = false;
+        } else {
+            this.passTrackValidation = value;
+        }
+    }
+
+    public boolean getPassTrackValidation() {
+        return passTrackValidation;
+    }
+
+    @DataBoundSetter
     public void setDeobfuscationFilesPattern(String deobfuscationFilesPattern) {
         this.deobfuscationFilesPattern = deobfuscationFilesPattern;
     }
@@ -236,7 +250,7 @@ public class ApkPublisher extends GooglePlayPublisher {
         final ReleaseTrack track = fromConfigValue(trackName);
         if (trackName == null) {
             errors.add("Release track was not specified");
-        } else if (track == null) {
+        } else if (!this.passTrackValidation && track == null) {
             errors.add(String.format("'%s' is not a valid release track", trackName));
         } else {
             // Check for valid rollout percentage
