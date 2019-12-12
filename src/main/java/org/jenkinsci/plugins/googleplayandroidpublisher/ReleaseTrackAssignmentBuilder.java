@@ -216,7 +216,7 @@ public class ReleaseTrackAssignmentBuilder extends GooglePlayBuilder {
         final ReleaseTrack track = fromConfigValue(trackName);
         if (trackName == null) {
             errors.add("Release track was not specified");
-        } else if (!this.passTrackValidation && track == null) {
+        } else if ((this.passTrackValidation == null || !this.passTrackValidation) && track == null) {
             errors.add(String.format("'%s' is not a valid release track", trackName));
         } else {
             // Check for valid rollout percentage
