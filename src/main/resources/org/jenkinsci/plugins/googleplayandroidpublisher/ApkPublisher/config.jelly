@@ -34,7 +34,7 @@
     <f:repeatableProperty field="recentChangeList" add="${%Add language...}" minimum="0" />
   </f:entry>
 
-  <f:entry title="${%Path track name validation (for custom tracks)}" field="passTrackValidation">
+  <f:entry title="${%Path track name validation}" field="passTrackValidation">
     <f:checkbox/>
   </f:entry>
 </j:jelly>
