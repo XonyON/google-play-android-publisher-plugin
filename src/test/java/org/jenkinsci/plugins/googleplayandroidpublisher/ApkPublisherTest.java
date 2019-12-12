@@ -119,8 +119,7 @@ public class ApkPublisherTest {
                 "Uploading 1 file(s) with application ID: org.jenkins.appId",
                 "APK file: " + join(Arrays.asList("build", "outputs", "apk", "app.apk"), File.separator),
                 "versionCode: 42",
-                "This file already exists in the Google Play account; it cannot be uploaded again",
-                "Upload to Google Play failed"
+                "This file already exists in the Google Play account; it cannot be uploaded again"
         );
     }
 
@@ -192,8 +191,7 @@ public class ApkPublisherTest {
                 "Uploading 1 file(s) with application ID: org.jenkins.bundleAppId",
                 "AAB file: " + join(Arrays.asList("build", "outputs", "bundle", "release", "bundle.aab"), File.separator),
                 "versionCode: 43",
-                "This file already exists in the Google Play account; it cannot be uploaded again",
-                "Upload to Google Play failed"
+                "This file already exists in the Google Play account; it cannot be uploaded again"
         );
     }
 
